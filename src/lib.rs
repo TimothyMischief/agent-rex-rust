@@ -1978,7 +1978,7 @@ mod retry_tests {
 }
 // unnamed ends here
 
-// [[file:index.org::14124]]
+// [[file:index.org::14125]]
 /// Merge two streams, interleaving values as they arrive.
 /// 
 /// # Note
@@ -2000,7 +2000,7 @@ pub use futures::stream::select as merge;
 pub use futures::stream::select_all as merge_all;
 // unnamed ends here
 
-// [[file:index.org::14148]]
+// [[file:index.org::14149]]
 #[cfg(test)]
 mod merge_tests {
   use super::*;
@@ -2027,7 +2027,7 @@ mod merge_tests {
 }
 // unnamed ends here
 
-// [[file:index.org::14559]]
+// [[file:index.org::14560]]
 // Built-in: outer.flatten_unordered(None) // None = unlimited concurrency
 // Or: outer.flatten_unordered(Some(10))  // limit to 10 concurrent streams
 
@@ -2035,7 +2035,7 @@ mod merge_tests {
 // merge_all is defined above for Vec<S>, use stream.flatten_unordered(None) for streams of streams
 // unnamed ends here
 
-// [[file:index.org::14890]]
+// [[file:index.org::14891]]
 // Built-in concurrent flatMap:
 // stream.flat_map_unordered(None, |item| create_inner_stream(item))
 
@@ -2063,7 +2063,7 @@ where
 }
 // unnamed ends here
 
-// [[file:index.org::14920]]
+// [[file:index.org::14921]]
 #[cfg(test)]
 mod chain_tests {
   use super::*;
@@ -2083,7 +2083,7 @@ mod chain_tests {
 }
 // unnamed ends here
 
-// [[file:index.org::15423]]
+// [[file:index.org::15413]]
 /// Switch to new inner stream on each outer value, cancelling previous.
 /// Runtime-agnostic using futures::select!
 pub fn switch_map<T, U, S, Inner, F>(f: F, s: S) -> impl Stream<Item = U>
@@ -2127,7 +2127,7 @@ where
 }
 // unnamed ends here
 
-// [[file:index.org::15469]]
+// [[file:index.org::15459]]
 #[cfg(test)]
 mod switch_map_tests {
   use super::*;
@@ -2149,7 +2149,7 @@ mod switch_map_tests {
 }
 // unnamed ends here
 
-// [[file:index.org::15880]]
+// [[file:index.org::15870]]
 /// Combine two streams, emitting tuple of latest values.
 /// Runtime-agnostic using stream merging.
 pub fn latest2<T: Clone + Send + 'static, U: Clone + Send + 'static>(
@@ -2191,7 +2191,7 @@ pub fn latest2<T: Clone + Send + 'static, U: Clone + Send + 'static>(
 }
 // unnamed ends here
 
-// [[file:index.org::15924]]
+// [[file:index.org::15914]]
 #[cfg(test)]
 mod latest2_tests {
   use super::*;
@@ -2208,7 +2208,7 @@ mod latest2_tests {
 }
 // unnamed ends here
 
-// [[file:index.org::16232]]
+// [[file:index.org::16222]]
 /// Apply latest function to latest value.
 pub fn apply_latest<T, U, F, S1, S2>(fn_stream: S1, value_stream: S2) -> impl Stream<Item = U>
 where
@@ -2222,7 +2222,7 @@ where
 }
 // unnamed ends here
 
-// [[file:index.org::16248]]
+// [[file:index.org::16238]]
 #[cfg(test)]
 mod apply_latest_tests {
   use super::*;
@@ -2239,7 +2239,7 @@ mod apply_latest_tests {
 }
 // unnamed ends here
 
-// [[file:index.org::16562]]
+// [[file:index.org::16552]]
 /// Emit from source until stop stream emits.
 /// Runtime-agnostic using futures::select!
 pub fn until_stream<T, U, S: Stream<Item = T> + Unpin, Stop: Stream<Item = U> + Unpin>(
@@ -2265,7 +2265,7 @@ pub fn until_stream<T, U, S: Stream<Item = T> + Unpin, Stop: Stream<Item = U> + 
 // source.take_until(stop.next())
 // unnamed ends here
 
-// [[file:index.org::16590]]
+// [[file:index.org::16580]]
 #[cfg(test)]
 mod until_stream_tests {
   use super::*;
@@ -2282,7 +2282,7 @@ mod until_stream_tests {
 }
 // unnamed ends here
 
-// [[file:index.org::16928]]
+// [[file:index.org::16918]]
 /// Emit from source only after start stream emits.
 /// Runtime-agnostic using futures::select!
 pub fn since_stream<T, U, S: Stream<Item = T> + Unpin, Start: Stream<Item = U> + Unpin>(
@@ -2312,7 +2312,7 @@ pub fn since_stream<T, U, S: Stream<Item = T> + Unpin, Start: Stream<Item = U> +
 }
 // unnamed ends here
 
-// [[file:index.org::16960]]
+// [[file:index.org::16950]]
 #[cfg(test)]
 mod since_stream_tests {
   use super::*;
@@ -2329,7 +2329,7 @@ mod since_stream_tests {
 }
 // unnamed ends here
 
-// [[file:index.org::17286]]
+// [[file:index.org::17279]]
 // Buffering Operators
 
 pub fn buffer<T, S: Stream<Item = T>>(size: usize, s: S) -> impl Stream<Item = Vec<T>> {
@@ -2345,7 +2345,7 @@ pub fn buffer<T, S: Stream<Item = T>>(size: usize, s: S) -> impl Stream<Item = V
 }
 // unnamed ends here
 
-// [[file:index.org::17304]]
+// [[file:index.org::17297]]
 #[cfg(test)]
 mod buffer_tests {
   use super::*;
@@ -2372,7 +2372,7 @@ mod buffer_tests {
 }
 // unnamed ends here
 
-// [[file:index.org::17853]]
+// [[file:index.org::17846]]
 /// Buffer values over time windows.
 /// Uses the Runtime trait for timer functionality.
 pub fn buffer_time<R, T, S>(ms: u64, mut s: S) -> impl Stream<Item = Vec<T>>
@@ -2441,7 +2441,7 @@ where
 }
 // unnamed ends here
 
-// [[file:index.org::17924]]
+// [[file:index.org::17917]]
 #[cfg(test)]
 mod buffer_time_tests {
   // Note: buffer_time requires Runtime trait for timing
@@ -2450,7 +2450,7 @@ mod buffer_time_tests {
 }
 // unnamed ends here
 
-// [[file:index.org::18266]]
+// [[file:index.org::18259]]
 /// Split source into windows of specified size.
 /// Each window is a vector of items (simpler than sub-streams).
 pub fn window<T: Clone + Send + 'static>(
@@ -2478,7 +2478,7 @@ pub fn window<T: Clone + Send + 'static>(
 }
 // unnamed ends here
 
-// [[file:index.org::18809]]
+// [[file:index.org::18802]]
 /// Pre-fetch values from a slow producer into a buffer.
 /// Uses the Runtime trait for spawning background consumption.
 pub fn eager<R, T, S>(buffer_size: usize, s: S) -> impl Stream<Item = T>
@@ -2530,7 +2530,7 @@ where
 }
 // unnamed ends here
 
-// [[file:index.org::18863]]
+// [[file:index.org::18856]]
 #[cfg(test)]
 mod eager_now_tests {
   // Note: eager_now requires Runtime trait for spawning
@@ -2539,7 +2539,7 @@ mod eager_now_tests {
 }
 // unnamed ends here
 
-// [[file:index.org::19234]]
+// [[file:index.org::19227]]
 // Multicasting Operators
 
 /// A multicasting subject that replays buffered values to new subscribers.
@@ -2608,7 +2608,7 @@ impl<T: Clone + Send + 'static> ReplaySubject<T> {
 }
 // unnamed ends here
 
-// [[file:index.org::19305]]
+// [[file:index.org::19298]]
 #[cfg(test)]
 mod replay_subject_tests {
   use super::*;
@@ -2652,7 +2652,7 @@ mod replay_subject_tests {
 }
 // unnamed ends here
 
-// [[file:index.org::19603]]
+// [[file:index.org::19596]]
 /// Replay creates a shared stream that buffers values for late subscribers.
 struct Replay<T> {
   inner: Arc<Mutex<ReplayInner<T>>>,
@@ -2753,7 +2753,7 @@ where
 }
 // unnamed ends here
 
-// [[file:index.org::19708]]
+// [[file:index.org::19701]]
 #[cfg(test)]
 mod replay_tests {
   use super::*;
@@ -2770,7 +2770,7 @@ mod replay_tests {
 }
 // unnamed ends here
 
-// [[file:index.org::20284]]
+// [[file:index.org::20277]]
 /// Share a stream among multiple consumers without buffering.
 /// This is equivalent to replay(0, source).
 fn share<T, S>(source: S) -> impl futures::Stream<Item = T>
@@ -2782,7 +2782,7 @@ where
 }
 // unnamed ends here
 
-// [[file:index.org::20298]]
+// [[file:index.org::20291]]
 #[cfg(test)]
 mod share_tests {
   use super::*;
@@ -2810,7 +2810,7 @@ mod share_tests {
 }
 // unnamed ends here
 
-// [[file:index.org::20618]]
+// [[file:index.org::20611]]
 /// Creates a factory that produces independent copies of a buffered stream.
 /// Each call to the factory returns a fresh stream that replays buffered values.
 fn replay_factory<T, S>(
@@ -2940,7 +2940,7 @@ where
 }
 // unnamed ends here
 
-// [[file:index.org::20869]]
+// [[file:index.org::20862]]
 /// Returns a stream that emits independent copies of the source stream.
 /// Each pull creates a new subscriber that receives buffered + live values.
 fn replay_stream<T, S>(
@@ -2974,7 +2974,7 @@ async fn replay_stream_example() {
 }
 // unnamed ends here
 
-// [[file:index.org::20905]]
+// [[file:index.org::20898]]
 #[cfg(test)]
 mod replay_stream_tests {
   // Note: replay_stream returns a stream of streams
@@ -2983,7 +2983,7 @@ mod replay_stream_tests {
 }
 // unnamed ends here
 
-// [[file:index.org::20981]]
+// [[file:index.org::20974]]
 use std::sync::atomic::AtomicU64;
 use std::task::Waker;
 
@@ -3148,7 +3148,7 @@ impl Default for TestRuntime {
 }
 // unnamed ends here
 
-// [[file:index.org::21150]]
+// [[file:index.org::21143]]
 /// A future that completes when the test runtime's virtual time reaches the target.
 pub struct TestSleep {
   runtime: TestRuntime,
@@ -3201,7 +3201,7 @@ impl Future for TestSleep {
 }
 // unnamed ends here
 
-// [[file:index.org::21207]]
+// [[file:index.org::21200]]
 /// A stream that yields at regular intervals based on virtual time.
 pub struct TestInterval {
   runtime: TestRuntime,
@@ -3250,7 +3250,7 @@ impl futures::Stream for TestInterval {
 }
 // unnamed ends here
 
-// [[file:index.org::21260]]
+// [[file:index.org::21253]]
 impl Runtime for TestRuntime {
   fn sleep(duration: Duration) -> Pin<Box<dyn Future<Output = ()> + Send>> {
     // Note: This requires a runtime instance, but the trait is static.
@@ -3286,7 +3286,7 @@ impl TestRuntime {
 }
 // unnamed ends here
 
-// [[file:index.org::21300]]
+// [[file:index.org::21293]]
 impl TestRuntime {
   /// Run a test with controlled time, returning the result.
   /// 
@@ -3323,7 +3323,7 @@ impl TestRuntime {
 }
 // unnamed ends here
 
-// [[file:index.org::21341]]
+// [[file:index.org::21334]]
 #[cfg(test)]
 mod test_runtime_tests {
   use super::*;
@@ -3407,7 +3407,7 @@ mod test_runtime_tests {
 }
 // unnamed ends here
 
-// [[file:index.org::21430]]
+// [[file:index.org::21423]]
 /// Delay operator that works with TestRuntime.
 /// 
 /// Unlike the generic `delay_with`, this takes a runtime instance
