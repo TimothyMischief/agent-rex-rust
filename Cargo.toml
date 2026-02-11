@@ -4,7 +4,7 @@
 # [[file:index.org::22193]]
 [package]
 name = "agent-rex"
-version = "0.0.0-nightly.20260210"
+version = "0.0.0-nightly.20260211"
 edition = "2021"
 description = "An async Stream-based FRP-like library for Rust"
 license = "MIT"
